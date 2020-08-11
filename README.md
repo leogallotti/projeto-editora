@@ -6,6 +6,7 @@ A API RESTful contém as seguintes características:
 * Banco: H2 Provedor JPA, Spring Data JPA com Hibernate.
 * Internacionalização de mensagens para erros de validação.
 * Tratamentos de erros da API e padronização de mensagens com ExceptionHandler.
+* Documentação com Swagger
 
 ### Detalhes Front-end
 * Angular CLI: 9.1.1
