@@ -1,7 +1,7 @@
 #Projeto  Editora.
 
 ### Detalhes API RESTful
-A API RESTful de Ponto Inteligente contém as seguintes características:  
+A API RESTful contém as seguintes características:  
 * Projeto criado com Spring Boot 2.3.2.RELEASE
 * Banco: H2 Provedor JPA, Spring Data JPA com Hibernate.
 * Internacionalização de mensagens para erros de validação.
