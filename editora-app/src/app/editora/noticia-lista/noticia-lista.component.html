@@ -1,0 +1,82 @@
+<h1 class="mt-4">Notícias</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                {{ mensagemSucesso }}  
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                {{ mensagemErro  }}    
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-warning" (click)="novoCadastro()" >
+                <i class="fa fa-plus"></i> Novo
+            </button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed  table-ellipsis">
+                <thead>
+                    <tr class="d-flex">
+                        <th hidden>ID</th>
+                        <th class="col-3">Título</th>                       
+                        <th class="col-3">Conteúdo</th>
+                        <th class="col-2">Data de publicação</th>
+                        <th class="col-2">Filial</th>
+                        <th class="col-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let noticia of noticias" class="d-flex">
+                        <td hidden>{{ noticia.id }}</td>
+                        <td class="col-3">{{ noticia.titulo }}</td>
+                        <td class="col-3">{{ noticia.conteudo }}</td>
+                        <td class="col-2">{{ noticia.dtPublicacao }}</td>
+                        <td class="col-2">{{ noticia.filial.nomeFilial }}</td>                                               
+                        <td class="col-2">
+                            <button class="btn btn-primary" 
+                                    routerLink="/noticia-form/{{ noticia.id }}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-danger" (click)="preparaDelecao(noticia)" 
+                                    data-toggle="modal" data-target="#modalDelecao">
+                                <i class="fa fa-trash"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalDelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirmação</h4>
+                </div>
+                <div class="modal-body" *ngIf="noticiaSelecionada">
+                    Deseja realmente excluir a notícia de título {{ noticiaSelecionada.titulo }}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" (click)="deletarNoticia()"  
+                            data-dismiss="modal">Confirmar</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

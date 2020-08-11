@@ -1,0 +1,52 @@
+<h1 class="mt-4">Filial</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{ filial.id ? 'Edição' : 'Cadastro' }}</li>
+</ol>
+<div class="container">
+    <form #filialForm="ngForm" (ngSubmit)="onSubmit()" >
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Filial salva/atualizado com sucesso!    
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}    
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="filial.id">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" [ngModel]="filial.id" name="id" class="form-control" disabled="true" />
+                </div>
+            </div>         
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nome: *</label>
+                    <input type="text" class="form-control" 
+                           [(ngModel)]="filial.nomeFilial" name="nomeFilial"/>
+                </div>
+            </div>         
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!filial.id">
+                    <i class="fa fa-save" ></i> Salvar
+                </button>
+                <button type="submit" class="btn btn-primary" *ngIf="filial.id">
+                    <i class="fa fa-sync-alt" ></i> Atualizar
+                </button>
+                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                    <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
+                </button>
+            </div>     
+        </div>
+    </form>
+</div>

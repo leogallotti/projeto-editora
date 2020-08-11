@@ -1,0 +1,9 @@
+table.table-ellipsis {
+    table-layout: fixed;
+  }
+  .table-ellipsis td  {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    
+  }

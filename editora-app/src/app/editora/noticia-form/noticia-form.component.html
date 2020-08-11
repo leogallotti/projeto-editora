@@ -1,0 +1,85 @@
+<h1 class="mt-4">Notícia</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{ noticia.id ? 'Edição' : 'Cadastro' }}</li>
+</ol>
+<div class="container">
+    <form #noticiaForm="ngForm" (ngSubmit)="onSubmit()" >
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Notícia salva/atualizado com sucesso!    
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}    
+                </div>
+            </div>
+        </div>    
+
+        <div class="row" *ngIf="noticia.id">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" [ngModel]="noticia.id" name="id" class="form-control" disabled="true" />
+                </div>
+            </div>         
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Título: *</label>
+                    <input type="text" class="form-control" 
+                           [(ngModel)]="noticia.titulo" name="titulo" maxlength="150"/>
+                </div>
+            </div>         
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Conteúdo: *</label>
+                    <textarea type="text" class="form-control" 
+                              [(ngModel)]="noticia.conteudo" name="conteudo" 
+                              rows="3" maxlength="850" maxlength="850"></textarea>
+                </div>
+            </div>         
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Filial: *</label>
+                    <select *ngIf="!noticia.id"  [(ngModel)]="noticia.filial" name="filial" class="form-control">
+                        <option>SELECIONE</option>
+                        <option *ngFor="let filial of filiais" [ngValue]="filial">{{ filial.nomeFilial }}</option>
+                    </select>
+                    <select *ngIf="noticia.id" [(ngModel)]="noticia.filial.id" name="filial" class="form-control">
+                        <option>SELECIONE</option>
+                        <option *ngFor="let filial of filiais" [ngValue]="filial.id">{{ filial.nomeFilial }}</option>
+                    </select>     
+                </div>
+            </div>
+            <div class="col-md-6">
+                <a  class="nav-link collapsed dist" [routerLink]="['/filial-form']" >
+                    <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                Cadastrar Filial
+                </a>    
+            </div>         
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!noticia.id">
+                    <i class="fa fa-save" ></i> Salvar
+                </button>
+                <button type="submit" class="btn btn-primary" *ngIf="noticia.id">
+                    <i class="fa fa-sync-alt" ></i> Atualizar
+                </button>
+                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                    <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
+                </button>
+            </div>     
+        </div>
+    </form>
+</div>
