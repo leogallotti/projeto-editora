@@ -1,4 +1,4 @@
-#Projeto  Editora
+#Projeto  Editora.
 
 ### Detalhes API RESTful
 A API RESTful de Ponto Inteligente contém as seguintes características:  
